@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -22,8 +23,13 @@ class WeatherService {
         CurrentWeather weather = CurrentWeather.fromJson(json.decode(res.body));
         return weather;
       }
+
+      return null;
+    } on SocketException {
+      print('socks');
     } catch (e) {
       print(e);
+      return null;
     }
   }
 
@@ -38,8 +44,13 @@ class WeatherService {
 
         return forecasts;
       }
+
+      return null;
+    } on SocketException {
+      print('socks');
     } catch (e) {
       print(e);
+      return null;
     }
   }
 }
