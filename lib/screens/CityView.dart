@@ -30,23 +30,23 @@ class CityViewState extends State<CityView> {
     DateTime timeStamp = DateTime.now();
     day = DateFormat.EEEE().format(timeStamp);
 
-    String api_key = DotEnv().env['API_KEY'];
+    String apiKey = DotEnv().env['API_KEY'];
 
-    weatherService = WeatherService(api_key: api_key);
+    weatherService = WeatherService(apiKey: apiKey);
 
     updateWeather();
   }
 
   void updateWeather() {
+    setState(() {
+      loading = true;
+    });
+
     final currentWeatherFuture =
         weatherService.fetchCurrentWeather(widget.cityID);
 
     final fiveDayForecastFuture =
         weatherService.fetchFiveDayForecast(widget.cityID);
-
-    setState(() {
-      loading = true;
-    });
 
     Future.wait([currentWeatherFuture, fiveDayForecastFuture])
         .then((responseArr) {
@@ -74,6 +74,8 @@ class CityViewState extends State<CityView> {
     // weather = fetchCurrentWeather();
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height / 5;
+    print(height);
+    height = height > 180 ? height : 180;
 
     return loading
         ? Center(child: CircularProgressIndicator())
@@ -97,7 +99,8 @@ class CityViewState extends State<CityView> {
                       weatherInfo: weatherInfo),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 5.0),
-                    child: Text("Last update: ${weatherInfo.updated}"),
+                    child:
+                        Text("Last update: ${weatherInfo.getTime('updated')}"),
                   ),
                   Expanded(
                     child: ForecastList(
