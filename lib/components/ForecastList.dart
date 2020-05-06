@@ -3,13 +3,23 @@ import 'package:flutter/material.dart';
 import 'package:weather_app/components/WeatherTile.dart';
 import 'package:weather_app/models/FiveDayForecast.dart';
 
-class ForecastList extends StatelessWidget {
+class ForecastList extends StatefulWidget {
   final FiveDayForecast fiveDayForecast;
   final double width;
+
+  ForecastList({this.fiveDayForecast, this.width});
+
+  @override
+  _ForecastListState createState() => _ForecastListState();
+}
+
+class _ForecastListState extends State<ForecastList> {
   List cardTiles;
 
-  ForecastList({this.fiveDayForecast, this.width}) {
-    cardTiles = fiveDayForecast.forecasts.fold([], (prev, element) {
+  @override
+  void initState() {
+    super.initState();
+    cardTiles = widget.fiveDayForecast.forecasts.fold([], (prev, element) {
       if (prev.length == 0) {
         prev.add(element.getDay());
       }
@@ -23,7 +33,6 @@ class ForecastList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(fiveDayForecast.count);
     return Container(
       color: Theme.of(context).primaryColor,
       child: Padding(

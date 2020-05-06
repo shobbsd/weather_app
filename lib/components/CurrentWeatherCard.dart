@@ -49,10 +49,11 @@ class CurrentWeatherCard extends StatelessWidget {
 }
 
 class TopSection extends StatelessWidget {
-  TopSection({this.weatherInfo, this.day});
-
   final CurrentWeather weatherInfo;
   final String day;
+
+  TopSection({this.weatherInfo, this.day});
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -83,28 +84,33 @@ class TopSection extends StatelessWidget {
 }
 
 class TempDisplay extends StatelessWidget {
+  final CurrentWeather weatherInfo;
+
   TempDisplay({this.weatherInfo});
 
-  final CurrentWeather weatherInfo;
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        Text("highs: ${weatherInfo.maxTemp} ${String.fromCharCode($deg)}C "),
+        Text("highs: ${weatherInfo.maxTemp} ${String.fromCharCode($deg)}C ",
+            style: TextStyle(color: Colors.red[700])),
         Text(
           "${weatherInfo.temp} ${String.fromCharCode($deg)}C ",
           style: Theme.of(context).textTheme.headline2,
         ),
-        Text("lows: ${weatherInfo.minTemp} ${String.fromCharCode($deg)}C")
+        Text(
+          "lows: ${weatherInfo.minTemp} ${String.fromCharCode($deg)}C",
+          style: TextStyle(color: Colors.blue[700]),
+        )
       ],
     );
   }
 }
 
 class TopRow extends StatelessWidget {
-  TopRow({this.weatherInfo});
-
   final CurrentWeather weatherInfo;
+
+  TopRow({this.weatherInfo});
 
   @override
   Widget build(BuildContext context) {
