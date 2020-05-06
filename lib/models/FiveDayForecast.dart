@@ -29,8 +29,16 @@ class HourlyForecast {
   final double temp;
   final String description;
   final String icon;
+  final double minTemp;
+  final double maxTemp;
 
-  HourlyForecast({this.description, this.icon, this.temp, this.time});
+  HourlyForecast(
+      {this.minTemp,
+      this.maxTemp,
+      this.description,
+      this.icon,
+      this.temp,
+      this.time});
 
   factory HourlyForecast.fromJson(Map<String, dynamic> json) {
     DateTime time = DateTime.fromMillisecondsSinceEpoch(json['dt'] * 1000);
@@ -38,6 +46,8 @@ class HourlyForecast {
         time: time,
         temp: json['main']['temp'],
         description: json['weather'][0]['description'],
+        minTemp: json['main']['temp_min'],
+        maxTemp: json['main']['temp_max'],
         icon: json['weather'][0]['icon']);
   }
 
