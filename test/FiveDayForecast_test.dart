@@ -5,10 +5,10 @@ import 'package:intl/intl.dart';
 import 'package:weather_app/models/FiveDayForecast.dart';
 
 void main() {
-  final String responseStr =
+  const responseStr =
       '{"cod":"200","message":0,"cnt":40,"list":[{"dt":1588777200,"main":{"temp":294.91,"feels_like":293.92,"temp_min":294.66,"temp_max":294.91,"pressure":1017,"sea_level":1017,"grnd_level":1016,"humidity":80,"temp_kf":0.25},"weather":[{"id":500,"main":"Rain","description":"light rain","icon":"10n"}],"clouds":{"all":43},"wind":{"speed":5.5,"deg":133},"rain":{"3h":0.78},"sys":{"pod":"n"},"dt_txt":"2020-05-06 15:00:00"},{"dt":1588788000,"main":{"temp":294.54,"feels_like":294.01,"temp_min":294.37,"temp_max":294.54,"pressure":1015,"sea_level":1015,"grnd_level":1015,"humidity":82,"temp_kf":0.17},"weather":[{"id":500,"main":"Rain","description":"light rain","icon":"10n"}],"clouds":{"all":23},"wind":{"speed":4.87,"deg":130},"rain":{"3h":0.94},"sys":{"pod":"n"},"dt_txt":"2020-05-06 18:00:00"}],"city":{"id":2172797,"name":"Cairns","coord":{"lat":-16.9167,"lon":145.7667},"country":"AU","timezone":36000,"sunrise":1588710638,"sunset":1588751785}}';
 
-  final String hourlyStr =
+  const hourlyStr =
       '{"dt":1588820400,"main":{"temp":299.84,"feels_like":297.84,"temp_min":299.84,"temp_max":299.84,"pressure":1015,"sea_level":1015,"grnd_level":1014,"humidity":54,"temp_kf":0},"weather":[{"id":800,"main":"Clear","description":"clear sky","icon":"01d"}],"clouds":{"all":0},"wind":{"speed":6.03,"deg":116},"sys":{"pod":"d"},"dt_txt":"2020-05-07 03:00:00"}';
 
   group("hourlyForecast", () {
@@ -36,6 +36,20 @@ void main() {
       expect(hourly.getDay(), formattedDay);
       expect(hourly.getTime(), formattedTime);
       expect(hourly.getImageUrl(), url);
+    });
+  });
+
+  group("fiveDayForecast", () {
+    test('parses from json string', () {
+      final fiveDay = FiveDayForecast.fromJson(json.decode(responseStr));
+      final areForecasts =
+          fiveDay.forecasts.every((element) => element is HourlyForecast);
+
+      expect(fiveDay.cityName, 'Cairns');
+      expect(fiveDay.count, 40);
+      expect(fiveDay.sunrise, 1588710638);
+      expect(fiveDay.sunset, 1588751785);
+      expect(areForecasts, true);
     });
   });
 }
