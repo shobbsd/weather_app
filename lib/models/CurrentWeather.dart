@@ -1,18 +1,19 @@
+import 'package:charcode/charcode.dart';
 import 'package:intl/intl.dart';
 
 class CurrentWeather {
   final String cityName;
   final String icon;
   final int temp;
+  final int maxTemp;
   final int minTemp;
   final int windSpeed;
   final int pressure;
   final int humidity;
   final int visibility;
-  final String sunrise;
-  final String sunset;
-  final String updated;
-  final int maxTemp;
+  final int sunrise;
+  final int sunset;
+  final int updated;
   final String description;
 
   CurrentWeather(
@@ -31,17 +32,6 @@ class CurrentWeather {
       this.sunset});
 
   factory CurrentWeather.fromJson(Map<String, dynamic> json) {
-    int sunriseTimestamp = json['sys']['sunrise'];
-    int sunsetTimestamp = json['sys']['sunset'];
-    int updatedTimestamp = json['dt'];
-    var sunrise = DateFormat.jm()
-        .format(DateTime.fromMillisecondsSinceEpoch(sunriseTimestamp * 1000));
-    var sunset = DateFormat.jm()
-        .format(DateTime.fromMillisecondsSinceEpoch(sunsetTimestamp * 1000));
-
-    var updated = DateFormat.Hm()
-        .format(DateTime.fromMillisecondsSinceEpoch(updatedTimestamp * 1000));
-
     return CurrentWeather(
         cityName: json['name'],
         icon: json['weather'][0]['icon'],
@@ -53,8 +43,44 @@ class CurrentWeather {
         pressure: json['main']['pressure'].round(),
         humidity: json['main']['humidity'].round(),
         visibility: (json['visibility'] / 1000).round(),
-        sunrise: sunrise,
-        sunset: sunset,
-        updated: updated);
+        sunrise: json['sys']['sunrise'],
+        sunset: json['sys']['sunset'],
+        updated: json['dt']);
+  }
+
+  String getTime(String key) {
+    if (key == "sunrise") {
+      return DateFormat.jm()
+          .format(DateTime.fromMillisecondsSinceEpoch(this.sunrise * 1000));
+    }
+
+    if (key == "sunset") {
+      return DateFormat.jm()
+          .format(DateTime.fromMillisecondsSinceEpoch(this.sunset * 1000));
+    }
+
+    if (key == 'updated') {
+      return DateFormat.jm()
+          .format(DateTime.fromMillisecondsSinceEpoch(this.updated * 1000));
+    }
+    return 'n/a';
+  }
+
+  String getTemp(String temp) {
+    final String strEnd = ' ${String.fromCharCode($deg)}C';
+
+    if (temp == 'maxTemp') {
+      return this.maxTemp.toString() + strEnd;
+    }
+
+    if (temp == 'temp') {
+      return this.temp.toString() + strEnd;
+    }
+
+    if (temp == 'minTemp') {
+      return this.minTemp.toString() + strEnd;
+    }
+
+    return 'n/a';
   }
 }
