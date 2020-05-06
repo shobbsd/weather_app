@@ -6,13 +6,13 @@ import 'screens/CityView.dart';
 var theme = ThemeData(
     primaryColor: Colors.lightBlue[50],
     textTheme: TextTheme(
-      headline1: TextStyle(fontSize: 60.0, fontWeight: FontWeight.bold),
-      headline2: TextStyle(fontSize: 40.0, fontWeight: FontWeight.bold),
-      headline3: TextStyle(fontSize: 20.0),
-      headline4: TextStyle(fontSize: 30.0),
-      subtitle1: TextStyle(fontSize: 15.0, fontWeight: FontWeight.bold),
-      subtitle2: TextStyle(fontSize: 15.0),
-      bodyText1: TextStyle(fontSize: 20),
+      headline1: TextStyle(fontSize: 60.0 * 0.8, fontWeight: FontWeight.bold),
+      headline2: TextStyle(fontSize: 30.0 * 0.8, fontWeight: FontWeight.bold),
+      headline3: TextStyle(fontSize: 20.0 * 0.8),
+      headline4: TextStyle(fontSize: 30.0 * 0.8),
+      subtitle1: TextStyle(fontSize: 15.0 * 0.8, fontWeight: FontWeight.bold),
+      subtitle2: TextStyle(fontSize: 15.0 * 0.8),
+      bodyText1: TextStyle(fontSize: 20 * 0.8),
     )
     // : TextStyle(fontSize: 60.0, fontWeight: FontWeight.bold)),
     );
