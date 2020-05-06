@@ -1,4 +1,3 @@
-import 'package:charcode/charcode.dart';
 import 'package:flutter/material.dart';
 import 'package:weather_app/models/CurrentWeather.dart';
 
@@ -11,10 +10,10 @@ class CurrentWeatherCard extends StatelessWidget {
       @required this.day})
       : super(key: key);
 
-  double height;
-  double width;
-  CurrentWeather weatherInfo;
-  String day;
+  final double height;
+  final double width;
+  final CurrentWeather weatherInfo;
+  final String day;
 
   @override
   Widget build(BuildContext context) {
@@ -92,14 +91,14 @@ class TempDisplay extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        Text("highs: ${weatherInfo.maxTemp} ${String.fromCharCode($deg)}C ",
+        Text("highs: ${weatherInfo.getTemp('maxTemp')}",
             style: TextStyle(color: Colors.red[700])),
         Text(
-          "${weatherInfo.temp} ${String.fromCharCode($deg)}C ",
+          "${weatherInfo.getTemp('temp')}",
           style: Theme.of(context).textTheme.headline2,
         ),
         Text(
-          "lows: ${weatherInfo.minTemp} ${String.fromCharCode($deg)}C",
+          "lows: ${weatherInfo.getTemp('minTemp')}",
           style: TextStyle(color: Colors.blue[700]),
         )
       ],
@@ -126,7 +125,7 @@ class TopRow extends StatelessWidget {
           ),
           Expanded(
             child: Text(
-              "${weatherInfo.sunrise}",
+              "${weatherInfo.getTime('sunrise')}",
               style: Theme.of(context).textTheme.subtitle2,
             ),
           ),
@@ -138,7 +137,7 @@ class TopRow extends StatelessWidget {
           ),
           Expanded(
             child: Text(
-              "${weatherInfo.sunset}",
+              "${weatherInfo.getTime('sunset')}",
               style: Theme.of(context).textTheme.subtitle2,
             ),
           ),
