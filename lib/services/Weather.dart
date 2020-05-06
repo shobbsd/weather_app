@@ -6,18 +6,16 @@ import 'package:http/http.dart' as http;
 import 'package:weather_app/models/CurrentWeather.dart';
 import 'package:weather_app/models/FiveDayForecast.dart';
 
-// http://api.openweathermap.org/data/2.5/weather?id=2172797&appid=858f19f326106b5ba3484766f399ef87
-
 class WeatherService {
   final String url = "https://api.openweathermap.org/data/2.5";
-  final String api_key;
+  final String apiKey;
 
-  WeatherService({@required this.api_key});
+  WeatherService({@required this.apiKey});
 
   Future<CurrentWeather> fetchCurrentWeather(cityID) async {
     try {
-      http.Response res = await http
-          .get("$url/weather/?id=$cityID&appid=$api_key&units=metric");
+      http.Response res =
+          await http.get("$url/weather/?id=$cityID&appid=$apiKey&units=metric");
 
       if (res.statusCode == 200) {
         CurrentWeather weather = CurrentWeather.fromJson(json.decode(res.body));
@@ -31,12 +29,13 @@ class WeatherService {
       print(e);
       return null;
     }
+    return null;
   }
 
   Future<FiveDayForecast> fetchFiveDayForecast(cityID) async {
     try {
       http.Response res = await http
-          .get("$url/forecast/?appid=$api_key&id=$cityID&units=metric");
+          .get("$url/forecast/?appid=$apiKey&id=$cityID&units=metric");
 
       if (res.statusCode == 200) {
         FiveDayForecast forecasts =
@@ -52,5 +51,6 @@ class WeatherService {
       print(e);
       return null;
     }
+    return null;
   }
 }
