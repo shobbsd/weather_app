@@ -12,6 +12,7 @@ class FiveDayForecast {
 
   factory FiveDayForecast.fromJson(Map<String, dynamic> json) {
     var list = json['list'] as List;
+
     List<HourlyForecast> forecasts =
         list.map((forecast) => HourlyForecast.fromJson(forecast)).toList();
 
