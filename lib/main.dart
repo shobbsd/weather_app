@@ -13,9 +13,7 @@ var theme = ThemeData(
       subtitle1: TextStyle(fontSize: 15.0 * 0.8, fontWeight: FontWeight.bold),
       subtitle2: TextStyle(fontSize: 15.0 * 0.8),
       bodyText1: TextStyle(fontSize: 20 * 0.8),
-    )
-    // : TextStyle(fontSize: 60.0, fontWeight: FontWeight.bold)),
-    );
+    ));
 
 Future main() async {
   await DotEnv().load('.env');
