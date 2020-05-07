@@ -17,8 +17,12 @@ Instructions:
 3. Create a .env file with your api key
    - `echo API_KEY={YOUR_API_KEY} > .env` 
    - e.g. `echo API_KEY=123 > .env`
-4. `flutter pub get`
-5. `flutter run`
+4. Download all the required packages
+   - `flutter pub get`
+5. Run the all tests
+   - `flutter test test/`
+6. Run the application on a chosen device/emulator
+   - `flutter run`
 
 
 
