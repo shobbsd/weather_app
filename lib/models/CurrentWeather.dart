@@ -33,7 +33,7 @@ class CurrentWeather {
 
   factory CurrentWeather.fromJson(Map<String, dynamic> json) {
     int visibility = json['visibility'];
-    if (visibility != null) (visibility / 1000).round();
+    if (visibility != null) visibility = (visibility / 1000).round();
 
     int minTemp = json['main']['temp_min'].round();
 
