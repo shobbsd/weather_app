@@ -17,8 +17,12 @@ Instructions:
 3. Create a .env file with your api key
    - `echo API_KEY={YOUR_API_KEY} > .env` 
    - e.g. `echo API_KEY=123 > .env`
-4. `flutter pub get`
-5. `flutter run`
+4. Download all the required packages
+   - `flutter pub get`
+5. Run the all tests
+   - `flutter test test/`
+6. Run the application on a chosen device/emulator
+   - `flutter run`
 
 
 
@@ -27,4 +31,5 @@ Instructions:
 - I would have liked to create a theme which was adjuastable depending on the size of the device it was being displayed on.
 - I would also add a way to add additional cities. 
 - A pull to refresh feature would have been a nice touch.
-- And some more time to spend designing and wireframing
+- And some more time to spend designing and wireframing.
+- Widget tests and integration tests would have been a nice addition
