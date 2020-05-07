@@ -45,10 +45,10 @@ class HourlyForecast {
     DateTime time = DateTime.fromMillisecondsSinceEpoch(json['dt'] * 1000);
     return HourlyForecast(
         time: time,
-        temp: json['main']['temp'],
+        temp: json['main']['temp'].toDouble(),
         description: json['weather'][0]['description'],
-        minTemp: json['main']['temp_min'],
-        maxTemp: json['main']['temp_max'],
+        minTemp: json['main']['temp_min'].toDouble(),
+        maxTemp: json['main']['temp_max'].toDouble(),
         icon: json['weather'][0]['icon']);
   }
 
