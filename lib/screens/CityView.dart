@@ -62,6 +62,7 @@ class CityViewState extends State<CityView> {
       setState(() {
         if (currentForecast != null) weatherInfo = currentForecast;
         if (futureForecasts != null) fiveDayForecast = futureForecasts;
+        print(weatherInfo);
         loading = false;
       });
     }).catchError((err) {
