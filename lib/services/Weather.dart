@@ -23,9 +23,7 @@ class WeatherService {
       }
 
       return null;
-    } on SocketException {
-      print('socks');
-    } catch (e) {
+    } on SocketException {} catch (e) {
       print(e);
       return null;
     }
@@ -45,9 +43,7 @@ class WeatherService {
       }
 
       return null;
-    } on SocketException {
-      print('socks');
-    } catch (e) {
+    } on SocketException {} catch (e) {
       print(e);
       return null;
     }
