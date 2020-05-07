@@ -43,12 +43,22 @@ class HourlyForecast {
 
   factory HourlyForecast.fromJson(Map<String, dynamic> json) {
     DateTime time = DateTime.fromMillisecondsSinceEpoch(json['dt'] * 1000);
+
+    dynamic temp = json['main']['temp'];
+    if (temp != null) temp = temp.toDouble();
+
+    dynamic minTemp = json['main']['temp_min'];
+    if (minTemp != null) minTemp = minTemp.toDouble();
+
+    dynamic maxTemp = json['main']['temp_max'];
+    if (maxTemp != null) maxTemp = maxTemp.toDouble();
+
     return HourlyForecast(
         time: time,
-        temp: json['main']['temp'].toDouble(),
+        temp: temp,
         description: json['weather'][0]['description'],
-        minTemp: json['main']['temp_min'].toDouble(),
-        maxTemp: json['main']['temp_max'].toDouble(),
+        minTemp: minTemp,
+        maxTemp: maxTemp,
         icon: json['weather'][0]['icon']);
   }
 

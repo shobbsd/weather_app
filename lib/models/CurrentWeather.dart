@@ -32,34 +32,49 @@ class CurrentWeather {
       this.sunset});
 
   factory CurrentWeather.fromJson(Map<String, dynamic> json) {
+    int visibility = json['visibility'];
+    if (visibility != null) (visibility / 1000).round();
+
+    int minTemp = json['main']['temp_min'].round();
+
+    int temp = json['main']['temp'].round();
+
+    int maxTemp = json['main']['temp_max'].round();
+
+    int pressure = json['main']['pressure'].round();
+
+    int humidity = json['main']['humidity'].round();
+
+    int windSpeed = json['wind']['speed'].round();
+
     return CurrentWeather(
         cityName: json['name'],
         icon: json['weather'][0]['icon'],
         description: json['weather'][0]['description'],
-        temp: json['main']['temp'].round(),
-        minTemp: json['main']['temp_min'].round(),
-        maxTemp: json['main']['temp_max'].round(),
-        windSpeed: json['wind']['speed'].round(),
-        pressure: json['main']['pressure'].round(),
-        humidity: json['main']['humidity'].round(),
-        visibility: (json['visibility'] / 1000).round(),
+        temp: temp,
+        minTemp: minTemp,
+        maxTemp: maxTemp,
+        windSpeed: windSpeed,
+        pressure: pressure,
+        humidity: humidity,
+        visibility: visibility,
         sunrise: json['sys']['sunrise'],
         sunset: json['sys']['sunset'],
         updated: json['dt']);
   }
 
   String getTime(String key) {
-    if (key == "sunrise") {
+    if (key == "sunrise" && this.sunrise != null) {
       return DateFormat.jm()
           .format(DateTime.fromMillisecondsSinceEpoch(this.sunrise * 1000));
     }
 
-    if (key == "sunset") {
+    if (key == "sunset" && this.sunset != null) {
       return DateFormat.jm()
           .format(DateTime.fromMillisecondsSinceEpoch(this.sunset * 1000));
     }
 
-    if (key == 'updated') {
+    if (key == 'updated' && this.updated != null) {
       return DateFormat.jm()
           .format(DateTime.fromMillisecondsSinceEpoch(this.updated * 1000));
     }
@@ -69,15 +84,15 @@ class CurrentWeather {
   String getTemp(String temp) {
     final String strEnd = ' ${String.fromCharCode($deg)}C';
 
-    if (temp == 'maxTemp') {
+    if (temp == 'maxTemp' && this.maxTemp != null) {
       return this.maxTemp.toString() + strEnd;
     }
 
-    if (temp == 'temp') {
+    if (temp == 'temp' && this.temp != null) {
       return this.temp.toString() + strEnd;
     }
 
-    if (temp == 'minTemp') {
+    if (temp == 'minTemp' && this.minTemp != null) {
       return this.minTemp.toString() + strEnd;
     }
 
