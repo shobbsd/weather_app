@@ -1,16 +1,30 @@
-# weather_app
+# Weather App
 
-A new Flutter project.
+A Cross Platform Mobile Flutter App that displays the weather for London. The app consists of two sections, at the top is a card which displays the current weather, and below is a list of 3-hourly forecasts. 
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+Assumptions:
 
-A few resources to get you started if this is your first Flutter project:
+- The user is in possesion of an open weather api key.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+Instructions:
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1. Clone down the project.
+   - `git clone https://github.com/shobbsd/weather_app.git`
+2. cd into the project
+   - `cd weather_app` 
+3. Create a .env file with your api key
+   - `echo API_KEY={YOUR_API_KEY} > .env` 
+   - e.g. `echo API_KEY=123 > .env`
+4. `flutter pub get`
+5. `flutter run`
+
+
+
+### If Time
+
+- I would have liked to create a theme which was adjuastable depending on the size of the device it was being displayed on.
+- I would also add a way to add additional cities. 
+- A pull to refresh feature would have been a nice touch.
+- And some more time to spend designing and wireframing
