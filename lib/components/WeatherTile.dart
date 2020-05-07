@@ -26,8 +26,6 @@ class WeatherTile extends StatelessWidget {
                 ],
               ),
             ),
-            // Spacer(),
-
             Expanded(
               flex: 4,
               child: Row(
