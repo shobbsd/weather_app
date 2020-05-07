@@ -71,10 +71,8 @@ class CityViewState extends State<CityView> {
 
   @override
   Widget build(BuildContext context) {
-    // weather = fetchCurrentWeather();
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height / 5;
-    print(height);
     height = height > 180 ? height : 180;
 
     return loading
